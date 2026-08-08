@@ -3,6 +3,7 @@ import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import About from "./components/About";
 import TechnicalSkills from "./components/TechnicalSkills";
+import Experience from "./components/Experience";
 import Projects from "./components/Projects";
 import Certifications from "./components/Certifications";
 import Contact from "./components/Contact";
@@ -34,7 +35,10 @@ export default function App() {
         {/* Section 3: TECHNICAL SKILLS (Animated glassmorphic category cards) */}
         <TechnicalSkills />
 
-        {/* Section 4: FEATURED PROJECTS (Apple-showcase 2-column grid of browser mockups) */}
+        {/* Section 4: EXPERIENCE (Professional timeline card & certificate showcase) */}
+        <Experience />
+
+        {/* Section 5: FEATURED PROJECTS (Apple-showcase 2-column grid of browser mockups) */}
         <Projects />
 
         {/* Section 5: CERTIFICATIONS (Premium certificates sitting on a visual floating shelf) */}
