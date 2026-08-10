@@ -89,7 +89,7 @@ export default function Hero() {
               transition={{ duration: 0.8, delay: 0.45 }}
               className="text-[#6B7280] text-sm md:text-base leading-relaxed max-w-2xl font-normal"
             >
-              I build intelligent AI/ML systems and highly polished, production-ready full-stack applications to solve complex, real-world problems.
+              I’m an AI/ML and Full-Stack Developer focused on building intelligent, scalable solutions with Machine Learning, Deep Learning, NLP, and modern web technologies. I combine problem-solving with practical software development to turn real-world challenges into impactful applications.
             </motion.p>
 
             {/* Structured Information Block */}

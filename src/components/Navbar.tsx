@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Printer } from "lucide-react";
+import DigitalResume from "./DigitalResume";
 
 interface NavLinkItem {
   name: string;
@@ -11,11 +12,13 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("hero");
+  const [isResumeOpen, setIsResumeOpen] = useState(false);
 
   const navLinks: NavLinkItem[] = [
     { name: "Home", targetId: "hero" },
     { name: "About", targetId: "who-i-am" },
     { name: "Skills", targetId: "technical-skills" },
+    { name: "Experience", targetId: "experience" },
     { name: "Projects", targetId: "featured-projects" },
     { name: "Certifications", targetId: "certifications" },
     { name: "Contact", targetId: "contact" },
@@ -54,6 +57,37 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && isResumeOpen) {
+        setIsResumeOpen(false);
+      }
+    };
+    if (isResumeOpen) {
+      document.body.style.overflow = "hidden";
+      window.addEventListener("keydown", handleKeyDown);
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isResumeOpen]);
+
+  const handlePrint = () => {
+    const iframe = document.getElementById("resume-iframe") as HTMLIFrameElement;
+    if (iframe && iframe.contentWindow) {
+      try {
+        iframe.contentWindow.print();
+      } catch (e) {
+        window.open("/resume.pdf", "_blank");
+      }
+    } else {
+      window.open("/resume.pdf", "_blank");
+    }
+  };
+
   const handleScrollTo = (e: React.MouseEvent<HTMLAnchorElement | HTMLDivElement>, targetId: string) => {
     e.preventDefault();
     setIsMobileMenuOpen(false);
@@ -74,10 +108,11 @@ export default function Navbar() {
   };
 
   return (
-    <header
-      className="fixed top-4 left-0 right-0 w-full z-50 flex justify-center px-4 pointer-events-none"
-      id="main-navbar"
-    >
+    <>
+      <header
+        className="fixed top-4 left-0 right-0 w-full z-50 flex justify-center px-4 pointer-events-none"
+        id="main-navbar"
+      >
       <div 
         className={`w-full max-w-5xl pointer-events-auto rounded-2xl border transition-all duration-300 flex items-center justify-between px-6 backdrop-blur-md ${
           isScrolled
@@ -124,7 +159,15 @@ export default function Navbar() {
         </nav>
 
         {/* Right Side Actions */}
-        <div className="flex items-center gap-4" id="navbar-right-actions">
+        <div className="flex items-center gap-3 sm:gap-4" id="navbar-right-actions">
+          {/* Resume Button */}
+          <button
+            onClick={() => setIsResumeOpen(true)}
+            className="flex items-center justify-center px-4 py-1.5 sm:py-2 bg-[#111827] hover:bg-[#A3E635] text-white hover:text-[#111827] font-semibold text-xs sm:text-sm rounded-full transition-colors duration-300 shadow-sm"
+          >
+            Resume
+          </button>
+
           {/* Mobile Hamburguer Menu Trigger */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -179,5 +222,62 @@ export default function Navbar() {
         )}
       </AnimatePresence>
     </header>
+
+      {/* Resume Viewer Modal */}
+      <AnimatePresence>
+        {isResumeOpen && (
+          <div className="fixed inset-0 z-[100] flex items-center justify-center">
+            {/* Background overlay */}
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="absolute inset-0 bg-black/70 backdrop-blur-sm cursor-pointer"
+              onClick={() => setIsResumeOpen(false)}
+            />
+            
+            {/* Modal Container */}
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+              className="relative w-full max-w-5xl h-[90vh] md:h-[85vh] bg-white rounded-2xl shadow-2xl overflow-hidden flex flex-col mx-4"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Header */}
+              <div className="flex items-center justify-between px-6 py-4 border-b border-[#E5E7EB] bg-[#F9FAFB]">
+                <h3 className="font-display font-bold text-[#111827] text-sm md:text-base tracking-wide">
+                  CURRICULUM VITAE • SAATHWIK R
+                </h3>
+                <div className="flex items-center gap-3">
+                  <button 
+                    onClick={handlePrint}
+                    className="flex items-center gap-2 px-4 py-2 bg-white border border-[#E5E7EB] hover:border-[#A3E635] text-[#111827] text-xs font-semibold rounded-lg shadow-sm transition-colors duration-200"
+                  >
+                    <Printer className="w-4 h-4 text-[#6B7280]" />
+                    <span className="hidden sm:inline">Print / Save PDF</span>
+                    <span className="sm:hidden">Print</span>
+                  </button>
+                  <button 
+                    onClick={() => setIsResumeOpen(false)}
+                    className="p-2 bg-white border border-[#E5E7EB] hover:border-red-400 text-[#6B7280] hover:text-red-500 rounded-lg shadow-sm transition-colors duration-200"
+                    aria-label="Close"
+                  >
+                    <X className="w-4 h-4" />
+                  </button>
+                </div>
+              </div>
+              
+              {/* Digital PDF Replacement Viewer */}
+              <div className="flex-1 w-full bg-gray-100 overflow-hidden relative rounded-b-2xl">
+                <DigitalResume />
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+    </>
   );
 }
