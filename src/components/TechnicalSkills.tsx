@@ -94,7 +94,7 @@ export default function TechnicalSkills() {
               key={idx}
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5, delay: idx * 0.08 }}
               className={`bg-white rounded-2xl p-7 border border-[#E5E7EB] hover:border-[#A3E635] shadow-[0_4px_25px_rgba(17,24,39,0.015)] hover:shadow-[0_15px_35px_rgba(163,230,53,0.06)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between ${
                 category.title === "Artificial Intelligence" ? "md:col-span-2 lg:col-span-1" : ""
@@ -116,9 +116,9 @@ export default function TechnicalSkills() {
                   {category.skills.map((skill, sIdx) => (
                     <motion.span
                       key={sIdx}
-                      whileHover={{ scale: 1.03 }}
+                      whileHover={{ scale: 1.02, y: -2 }}
                       transition={{ type: "spring", stiffness: 400, damping: 15 }}
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium font-sans text-[#6B7280] hover:text-[#111827] bg-[#F9FAFB] border border-[#E5E7EB] hover:border-[#A3E635]/55 transition-all duration-200 cursor-default"
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium font-sans text-[#6B7280] hover:text-[#111827] bg-[#F9FAFB] border border-[#E5E7EB] hover:border-[#A3E635]/55 transition-all duration-200 cursor-default hover:brightness-105"
                     >
                       <span className="w-1.5 h-1.5 rounded-full bg-[#A3E635] shrink-0" />
                       {skill}

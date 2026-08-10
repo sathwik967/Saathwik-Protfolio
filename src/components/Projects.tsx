@@ -75,7 +75,7 @@ export default function Projects() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.6, delay: idx * 0.08 }}
-              className="group flex flex-col bg-white rounded-2xl border border-[#E5E7EB] hover:border-[#A3E635] shadow-[0_4px_25px_rgba(17,24,39,0.015)] hover:shadow-[0_15px_35px_rgba(163,230,53,0.06)] hover:-translate-y-1.5 transition-all duration-300 relative overflow-hidden h-full"
+              className="group flex flex-col bg-white rounded-2xl border border-[#E5E7EB] hover:border-[#A3E635] hover:ring-1 hover:ring-[#A3E635]/30 shadow-[0_4px_25px_rgba(17,24,39,0.015)] hover:shadow-[0_15px_35px_rgba(163,230,53,0.1)] hover:-translate-y-1.5 transition-all duration-300 relative overflow-hidden h-full"
             >
               
               {/* Card Content - flex layout with equal distribution */}
@@ -104,7 +104,7 @@ export default function Projects() {
                     {project.tags.map((tag) => (
                       <span 
                         key={tag} 
-                        className={`text-[9px] font-mono font-semibold border px-2.5 py-1 rounded-md transition-colors ${getTagStyles(tag)}`}
+                        className={`text-[9px] font-mono font-semibold border px-2.5 py-1 rounded-md transition-all duration-300 group-hover:brightness-105 hover:brightness-110 hover:-translate-y-0.5 ${getTagStyles(tag)}`}
                       >
                         {tag}
                       </span>
@@ -117,9 +117,9 @@ export default function Projects() {
                       href={project.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-gradient-to-r from-[#A3E635] to-[#84CC16] hover:from-[#84CC16] hover:to-[#A3E635] text-black font-semibold text-xs rounded-full transition-all duration-300 cursor-pointer shadow-[0_4px_12px_rgba(163,230,53,0.25)] hover:shadow-[0_8px_20px_rgba(163,230,53,0.4)] hover:scale-[1.01] active:scale-[0.99]"
+                      className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-gradient-to-r from-[#A3E635] to-[#84CC16] hover:from-[#84CC16] hover:to-[#A3E635] text-black font-semibold text-xs rounded-full transition-all duration-300 cursor-pointer shadow-[0_4px_12px_rgba(163,230,53,0.25)] hover:shadow-[0_8px_20px_rgba(163,230,53,0.4)] hover:scale-[1.02] active:scale-[0.98] group/btn"
                     >
-                      <Github className="w-4 h-4 text-black" />
+                      <Github className="w-4 h-4 text-black transition-transform duration-300 group-hover/btn:translate-x-1" />
                       GitHub
                     </a>
                   </div>

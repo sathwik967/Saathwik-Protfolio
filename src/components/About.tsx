@@ -59,7 +59,14 @@ export default function About() {
   ];
 
   return (
-    <section id="who-i-am" className="py-28 bg-[#FFFFFF] border-y border-[#E5E7EB] relative overflow-hidden">
+    <motion.section 
+      id="who-i-am" 
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+      className="py-28 bg-[#FFFFFF] border-y border-[#E5E7EB] relative overflow-hidden"
+    >
       {/* Background visual detail */}
       <div className="absolute top-1/2 left-0 w-[400px] h-[400px] rounded-full bg-[#A3E635]/3 blur-[100px] pointer-events-none" />
       <div className="absolute bottom-0 right-0 w-[300px] h-[300px] rounded-full bg-[#84CC16]/3 blur-[100px] pointer-events-none" />
@@ -140,6 +147,6 @@ export default function About() {
         </div>
 
       </div>
-    </section>
+    </motion.section>
   );
 }

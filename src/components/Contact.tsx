@@ -87,7 +87,14 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-28 bg-[#FFFFFF] border-t border-[#E5E7EB] relative overflow-hidden">
+    <motion.section 
+      id="contact" 
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+      className="py-28 bg-[#FFFFFF] border-t border-[#E5E7EB] relative overflow-hidden"
+    >
       {/* Background visual detail */}
       <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full bg-[#84CC16]/4 blur-[130px] pointer-events-none" />
       <div className="absolute top-[-10%] left-[-10%] w-[400px] h-[400px] rounded-full bg-[#A3E635]/4 blur-[100px] pointer-events-none" />
@@ -313,6 +320,6 @@ export default function Contact() {
 
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }

@@ -10,7 +10,14 @@ export default function Certifications() {
   };
 
   return (
-    <section id="certifications" className="py-28 bg-transparent relative overflow-hidden">
+    <motion.section 
+      id="certifications" 
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+      className="py-28 bg-transparent relative overflow-hidden"
+    >
       {/* Background radial effects */}
       <div className="absolute top-[-10%] right-[-10%] w-[400px] h-[400px] rounded-full bg-[#A3E635]/4 blur-[120px] pointer-events-none" />
       <div className="absolute bottom-[-10%] left-[-10%] w-[300px] h-[300px] rounded-full bg-[#84CC16]/4 blur-[100px] pointer-events-none" />
@@ -92,6 +99,6 @@ export default function Certifications() {
         </p>
 
       </div>
-    </section>
+    </motion.section>
   );
 }

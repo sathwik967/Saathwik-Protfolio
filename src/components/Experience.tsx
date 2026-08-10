@@ -52,19 +52,32 @@ export default function Experience() {
         <div className="max-w-5xl mx-auto relative pt-2">
           
           {/* Professional timeline vertical accent line */}
-          <div className="hidden lg:block absolute left-4 top-0 bottom-0 w-[2px] bg-gradient-to-b from-transparent via-[#A3E635]/60 to-transparent pointer-events-none" />
+          <motion.div 
+            initial={{ scaleY: 0 }}
+            whileInView={{ scaleY: 1 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 1, ease: "easeInOut" }}
+            style={{ transformOrigin: "top" }}
+            className="hidden lg:block absolute left-4 top-0 bottom-0 w-[2px] bg-gradient-to-b from-[#A3E635]/60 via-[#A3E635]/60 to-transparent pointer-events-none" 
+          />
 
           <div className="relative lg:pl-12">
             {/* Timeline glowing dot */}
-            <div className="hidden lg:flex absolute left-2.5 top-12 -translate-x-1/2 w-4 h-4 rounded-full bg-[#A3E635] items-center justify-center ring-4 ring-[#A3E635]/20 shadow-xs z-10" />
+            <motion.div 
+              initial={{ scale: 0, opacity: 0 }}
+              whileInView={{ scale: 1, opacity: 1 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="hidden lg:flex absolute left-2.5 top-12 -translate-x-1/2 w-4 h-4 rounded-full bg-[#A3E635] items-center justify-center ring-4 ring-[#A3E635]/20 shadow-xs z-10" 
+            />
 
             {/* Main Experience Card with Fade-up and Hover Lift Effect */}
             <motion.div
-              initial={{ opacity: 0, y: 25 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               whileHover={{ y: -6 }}
-              transition={{ duration: 0.5, ease: "easeOut" }}
+              transition={{ duration: 0.6, delay: 0.4 }}
               className="group bg-white rounded-3xl border border-[#E5E7EB] hover:border-[#A3E635] shadow-[0_4px_25px_rgba(17,24,39,0.015)] hover:shadow-[0_20px_45px_rgba(163,230,53,0.07)] transition-all duration-300 relative overflow-hidden p-6 md:p-8 lg:p-10"
             >
               {/* Top Accent Gradient Line */}

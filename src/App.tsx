@@ -9,6 +9,7 @@ import Certifications from "./components/Certifications";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import TechBackground from "./components/TechBackground";
+import CursorEffect from "./components/CursorEffect";
 
 export default function App() {
   // Let's configure custom title and tracking if desired
@@ -18,6 +19,7 @@ export default function App() {
 
   return (
     <div className="relative min-h-screen text-[#111827] antialiased">
+      <CursorEffect />
       {/* Premium Corporate Technology Background */}
       <TechBackground />
       

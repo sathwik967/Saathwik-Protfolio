@@ -114,9 +114,9 @@ export default function Navbar() {
         id="main-navbar"
       >
       <div 
-        className={`w-full max-w-5xl pointer-events-auto rounded-2xl border transition-all duration-300 flex items-center justify-between px-6 backdrop-blur-md ${
+        className={`w-full max-w-5xl pointer-events-auto rounded-2xl border transition-all duration-500 flex items-center justify-between px-6 backdrop-blur-md ${
           isScrolled
-            ? "bg-white/75 border-[#E5E7EB] shadow-[0_10px_35px_-5px_rgba(17,24,39,0.06)] h-[72px]"
+            ? "bg-white/85 border-[#E5E7EB] shadow-[0_10px_40px_-10px_rgba(17,24,39,0.12)] h-[72px]"
             : "bg-white/80 border-[#E5E7EB]/65 shadow-[0_8px_30px_-5px_rgba(17,24,39,0.03)] h-[80px]"
         }`}
       >
@@ -147,12 +147,16 @@ export default function Navbar() {
                 }`}
               >
                 {link.name}
-                {/* Thin Lime Green underline */}
-                <span
-                  className={`absolute bottom-0 left-0 h-0.5 bg-[#A3E635] rounded-full transition-all duration-300 ${
-                    isActive ? "w-full" : "w-0 group-hover:w-full"
-                  }`}
-                />
+                {/* Active Indicator with Framer Motion layoutId */}
+                {isActive ? (
+                  <motion.span
+                    layoutId="activeSection"
+                    className="absolute bottom-0 left-0 w-full h-0.5 bg-[#A3E635] rounded-full"
+                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                  />
+                ) : (
+                  <span className="absolute bottom-0 left-0 h-0.5 bg-[#A3E635] rounded-full w-0 group-hover:w-full transition-all duration-300" />
+                )}
               </a>
             );
           })}

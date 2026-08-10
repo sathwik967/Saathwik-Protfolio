@@ -54,7 +54,7 @@ export default function Hero() {
               <motion.p 
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.1 }}
+                transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
                 className="text-xs uppercase tracking-[0.25em] text-[#6B7280] font-mono font-semibold"
               >
                 Hi, I'm
@@ -63,7 +63,7 @@ export default function Hero() {
               <motion.h1 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: 0.2 }}
+                transition={{ duration: 0.7, delay: 0.25, ease: "easeOut" }}
                 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-display font-extrabold tracking-tighter leading-[1.05] select-none text-[#111827]"
               >
                 SAATHWIK R
@@ -73,7 +73,7 @@ export default function Hero() {
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.35 }}
+                transition={{ duration: 0.6, delay: 0.40, ease: "easeOut" }}
                 className="pt-1"
               >
                 <h2 className="text-xs sm:text-sm md:text-base lg:text-md font-sans font-bold tracking-[0.15em] text-[#A3E635] uppercase">
@@ -84,9 +84,9 @@ export default function Hero() {
 
             {/* Short Description */}
             <motion.p 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.45 }}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.55, ease: "easeOut" }}
               className="text-[#6B7280] text-sm md:text-base leading-relaxed max-w-2xl font-normal"
             >
               I’m an AI/ML and Full-Stack Developer focused on building intelligent, scalable solutions with Machine Learning, Deep Learning, NLP, and modern web technologies. I combine problem-solving with practical software development to turn real-world challenges into impactful applications.
@@ -96,7 +96,7 @@ export default function Hero() {
             <motion.div 
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
+              transition={{ duration: 0.6, delay: 0.70, ease: "easeOut" }}
               className="flex flex-col gap-3.5 w-full text-left font-medium max-w-xl pt-2"
             >
               <div className="flex items-center gap-3 text-[#6B7280]">
@@ -134,7 +134,7 @@ export default function Hero() {
             <motion.div 
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.55 }}
+              transition={{ duration: 0.6, delay: 0.85, ease: "easeOut" }}
               className="flex flex-wrap justify-center md:justify-start items-center gap-3 pt-3"
             >
               <button
@@ -172,15 +172,16 @@ export default function Hero() {
           {/* Right Column (45% equivalent width) - Clean Circular Profile Photo */}
           <div className="md:col-span-5 flex justify-center items-center order-1 md:order-2">
             <motion.div
-              initial={{ opacity: 0, scale: 0.96 }}
+              initial={{ opacity: 0, scale: 0.9 }}
               animate={{ 
                 opacity: 1, 
                 scale: 1,
-                y: [0, -4, 0]
+                y: [0, -6, 0]
               }}
+              whileHover={{ scale: 1.03 }}
               transition={{ 
-                scale: { duration: 0.8, delay: 0.3 },
-                opacity: { duration: 0.8, delay: 0.3 },
+                scale: { duration: 0.8, delay: 0.3, ease: "easeOut" },
+                opacity: { duration: 0.8, delay: 0.3, ease: "easeOut" },
                 y: {
                   duration: 6,
                   repeat: Infinity,
@@ -190,9 +191,11 @@ export default function Hero() {
               }}
               className="relative group p-4"
             >
-              {/* Soft radial gradient circle behind the circle: Lime Green & Soft Green */}
-              <div 
-                className="absolute inset-0 rounded-full blur-[40px] pointer-events-none -z-10 animate-pulse-slow"
+              {/* Soft radial gradient circle behind the circle */}
+              <motion.div 
+                animate={{ opacity: [0.3, 0.6, 0.3], scale: [1, 1.05, 1] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute inset-0 rounded-full blur-[40px] pointer-events-none -z-10"
                 style={{
                   background: "radial-gradient(circle, rgba(163, 230, 53, 0.25) 0%, rgba(217, 249, 157, 0.4) 50%, transparent 100%)"
                 }}

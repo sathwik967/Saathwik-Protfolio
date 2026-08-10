@@ -30,10 +30,10 @@ export default function TechBackground() {
         }}
       />
 
-      {/* 3. Subtle lime green corner radial glows (blurry, opacity under 8%) */}
-      <div className="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] rounded-full bg-gradient-to-br from-[#A3E635]/6 via-[#D9F99D]/4 to-transparent blur-[140px]" />
-      <div className="absolute bottom-[-10%] right-[-10%] w-[60vw] h-[60vw] rounded-full bg-gradient-to-tl from-[#84CC16]/5 via-[#D9F99D]/4 to-transparent blur-[160px]" />
-      <div className="absolute top-[45%] right-[-15%] w-[45vw] h-[45vw] rounded-full bg-gradient-to-bl from-[#D9F99D]/6 via-[#A3E635]/3 to-transparent blur-[150px]" />
+      {/* 3. Subtle blue, lavender, and orange corner radial glows (blurry, opacity under 8%) */}
+      <div className="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] rounded-full bg-gradient-to-br from-[#3B82F6]/6 via-[#8B5CF6]/4 to-transparent blur-[140px]" />
+      <div className="absolute bottom-[-10%] right-[-10%] w-[60vw] h-[60vw] rounded-full bg-gradient-to-tl from-[#F97316]/5 via-[#FDBA74]/4 to-transparent blur-[160px]" />
+      <div className="absolute top-[45%] right-[-15%] w-[45vw] h-[45vw] rounded-full bg-gradient-to-bl from-[#A855F7]/6 via-[#3B82F6]/3 to-transparent blur-[150px]" />
 
       {/* 4. Faint abstract circular lines and line graphics similar to reference */}
       <motion.div 
