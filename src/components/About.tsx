@@ -12,29 +12,6 @@ import {
 } from "lucide-react";
 
 export default function About() {
-  const highlightCards = [
-    {
-      icon: <GraduationCap className="w-5 h-5 text-[#A3E635]" />,
-      label: "Education",
-      value: "B.E. Computer Science (AI & ML)"
-    },
-    {
-      icon: <School className="w-5 h-5 text-[#A3E635]" />,
-      label: "College",
-      value: "Sahyadri College of Engineering"
-    },
-    {
-      icon: <MapPin className="w-5 h-5 text-[#A3E635]" />,
-      label: "Location",
-      value: "Mangalore, Karnataka"
-    },
-    {
-      icon: <Star className="w-5 h-5 text-[#A3E635]" />,
-      label: "CGPA",
-      value: "7.79"
-    }
-  ];
-
   const skillPanels = [
     {
       icon: <Code2 className="w-5 h-5 text-[#A3E635]" />,
@@ -95,29 +72,6 @@ export default function About() {
               </p>
             </div>
 
-            {/* Highlight Cards Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-              {highlightCards.map((card, i) => (
-                <motion.div
-                  key={i}
-                  whileHover={{ y: -4 }}
-                  transition={{ duration: 0.2, ease: "easeOut" }}
-                  className="flex items-start gap-4 p-5 rounded-2xl bg-white border border-[#E5E7EB] hover:border-[#A3E635] hover:shadow-[0_12px_30px_rgba(163,230,53,0.06)] transition-all h-full shadow-xs duration-300"
-                >
-                  <div className="p-2.5 rounded-xl bg-[#F9FAFB] border border-[#E5E7EB] flex-shrink-0 text-[#A3E635]">
-                    {card.icon}
-                  </div>
-                  <div>
-                    <p className="text-[9px] font-mono font-semibold text-[#6B7280]/70 uppercase tracking-wider">
-                      {card.label}
-                    </p>
-                    <p className="text-sm font-semibold text-[#111827] leading-tight mt-1.5">
-                      {card.value}
-                    </p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
           </div>
 
           {/* Right Column: Information Panel */}

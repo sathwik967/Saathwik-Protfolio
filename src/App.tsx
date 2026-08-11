@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import About from "./components/About";
+import Education from "./components/Education";
 import TechnicalSkills from "./components/TechnicalSkills";
 import Experience from "./components/Experience";
 import Projects from "./components/Projects";
@@ -33,6 +34,9 @@ export default function App() {
 
         {/* Section 2: WHO I AM (Scannable profile cards and timeline) */}
         <About />
+
+        {/* Section 2.5: EDUCATION */}
+        <Education />
 
         {/* Section 3: TECHNICAL SKILLS (Animated glassmorphic category cards) */}
         <TechnicalSkills />

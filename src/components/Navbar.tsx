@@ -17,6 +17,7 @@ export default function Navbar() {
   const navLinks: NavLinkItem[] = [
     { name: "Home", targetId: "hero" },
     { name: "About", targetId: "who-i-am" },
+    { name: "Education", targetId: "education" },
     { name: "Skills", targetId: "technical-skills" },
     { name: "Experience", targetId: "experience" },
     { name: "Projects", targetId: "featured-projects" },
