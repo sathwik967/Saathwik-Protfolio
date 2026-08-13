@@ -22,6 +22,7 @@ export default function Navbar() {
     { name: "Experience", targetId: "experience" },
     { name: "Projects", targetId: "featured-projects" },
     { name: "Certifications", targetId: "certifications" },
+    { name: "Achievements", targetId: "achievements" },
     { name: "Contact", targetId: "contact" },
   ];
 
@@ -115,27 +116,27 @@ export default function Navbar() {
         id="main-navbar"
       >
       <div 
-        className={`w-full max-w-5xl pointer-events-auto rounded-2xl border transition-all duration-500 flex items-center justify-between px-6 backdrop-blur-md ${
+        className={`w-full max-w-[1400px] pointer-events-auto rounded-2xl border transition-all duration-500 flex items-center justify-between px-4 lg:px-6 backdrop-blur-md ${
           isScrolled
             ? "bg-white/85 border-[#E5E7EB] shadow-[0_10px_40px_-10px_rgba(17,24,39,0.12)] h-[72px]"
             : "bg-white/80 border-[#E5E7EB]/65 shadow-[0_8px_30px_-5px_rgba(17,24,39,0.03)] h-[80px]"
         }`}
       >
-        {/* Left Side: Modern Logo */}
+        {/* 1. Left Side: Modern Logo */}
         <div
           onClick={(e) => handleScrollTo(e, "hero")}
-          className="flex items-center gap-2 cursor-pointer group"
+          className="flex items-center gap-2 cursor-pointer group shrink-0"
           id="navbar-logo"
         >
-          <span className="font-display font-extrabold text-xl md:text-2xl tracking-tight text-[#111827] transition-transform duration-300 group-hover:scale-[1.02]">
+          <span className="font-display font-extrabold text-xl lg:text-2xl tracking-tight text-[#111827] transition-transform duration-300 group-hover:scale-[1.02] whitespace-nowrap">
             <span className="hidden sm:inline">SAATHWIK R</span>
             <span className="inline sm:hidden">SR</span>
           </span>
           <span className="w-2.5 h-2.5 rounded-full bg-[#A3E635] group-hover:scale-125 transition-transform duration-300 animate-pulse shrink-0 shadow-[0_0_8px_#A3E635]" />
         </div>
 
-        {/* Center: Navigation Links (Desktop) */}
-        <nav className="hidden lg:flex items-center space-x-8" id="navbar-desktop-nav">
+        {/* 2. Center: Navigation Links (Desktop) */}
+        <nav className="hidden lg:flex items-center justify-center gap-3 xl:gap-6 flex-1 px-4" id="navbar-desktop-nav">
           {navLinks.map((link) => {
             const isActive = activeSection === link.targetId;
             return (
@@ -143,7 +144,7 @@ export default function Navbar() {
                 key={link.targetId}
                 href={`#${link.targetId}`}
                 onClick={(e) => handleScrollTo(e, link.targetId)}
-                className={`relative py-1.5 font-sans font-medium text-xs md:text-sm tracking-wide transition-colors duration-300 group ${
+                className={`relative py-1.5 font-sans font-medium text-[11px] xl:text-[13px] 2xl:text-sm tracking-wide transition-colors duration-300 group whitespace-nowrap ${
                   isActive ? "text-[#A3E635] font-semibold" : "text-[#6B7280] hover:text-[#A3E635]"
                 }`}
               >
@@ -163,12 +164,12 @@ export default function Navbar() {
           })}
         </nav>
 
-        {/* Right Side Actions */}
-        <div className="flex items-center gap-3 sm:gap-4" id="navbar-right-actions">
+        {/* 3. Right Side Actions */}
+        <div className="flex items-center gap-3 sm:gap-4 shrink-0" id="navbar-right-actions">
           {/* Resume Button */}
           <button
             onClick={() => setIsResumeOpen(true)}
-            className="flex items-center justify-center px-4 py-1.5 sm:py-2 bg-[#111827] hover:bg-[#A3E635] text-white hover:text-[#111827] font-semibold text-xs sm:text-sm rounded-full transition-colors duration-300 shadow-sm"
+            className="hidden lg:flex items-center justify-center px-4 py-1.5 xl:py-2 bg-[#111827] hover:bg-[#A3E635] text-white hover:text-[#111827] font-semibold text-xs xl:text-sm rounded-full transition-colors duration-300 shadow-sm whitespace-nowrap shrink-0"
           >
             Resume
           </button>
@@ -176,7 +177,7 @@ export default function Navbar() {
           {/* Mobile Hamburguer Menu Trigger */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden p-2 text-[#111827] hover:text-[#A3E635] hover:bg-[#F9FAFB] rounded-lg transition-colors duration-200 cursor-pointer"
+            className="lg:hidden p-2 text-[#111827] hover:text-[#A3E635] hover:bg-[#F9FAFB] rounded-lg transition-colors duration-200 cursor-pointer shrink-0"
             aria-label="Toggle menu"
             id="navbar-hamburger-btn"
           >

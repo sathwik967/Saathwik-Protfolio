@@ -7,6 +7,7 @@ import TechnicalSkills from "./components/TechnicalSkills";
 import Experience from "./components/Experience";
 import Projects from "./components/Projects";
 import Certifications from "./components/Certifications";
+import Achievements from "./components/Achievements";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import TechBackground from "./components/TechBackground";
@@ -49,6 +50,9 @@ export default function App() {
 
         {/* Section 5: CERTIFICATIONS (Premium certificates sitting on a visual floating shelf) */}
         <Certifications />
+
+        {/* Section 5.5: ACHIEVEMENTS (Sports & Extra-curricular) */}
+        <Achievements />
 
         {/* Section 6: CONTACT (Split-screen info panel and floating secure form) */}
         <Contact />
