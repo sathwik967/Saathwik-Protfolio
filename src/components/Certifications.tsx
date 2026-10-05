@@ -1,9 +1,36 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { Award, ShieldCheck, Calendar, Sparkles, Maximize2, X, Building, CheckCircle } from "lucide-react";
+import { Award, ShieldCheck, Calendar, Sparkles, Maximize2, X, Building, CheckCircle, ChevronLeft, ChevronRight } from "lucide-react";
 
 export default function Certifications() {
   const [selectedCert, setSelectedCert] = useState<string | null>(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const swipeConfidenceThreshold = 10000;
+  const swipePower = (offset: number, velocity: number) => {
+    return Math.abs(offset) * velocity;
+  };
+
+  const paginate = (direction: number) => {
+    setCurrentIndex((prevIndex) => {
+      let nextIndex = prevIndex + direction;
+      if (nextIndex < 0) nextIndex = certifications.length - 1;
+      if (nextIndex >= certifications.length) nextIndex = 0;
+      return nextIndex;
+    });
+  };
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "ArrowLeft") {
+        paginate(-1);
+      } else if (e.key === "ArrowRight") {
+        paginate(1);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
 
   const certifications = [
     {
@@ -17,6 +44,30 @@ export default function Certifications() {
       score: "Consolidated Score: 69%",
       image: "/nptel_certificate.jpg",
       tags: ["Python", "Data Science", "Machine Learning", "Data Analysis"]
+    },
+    {
+      id: "dbms-part-1",
+      title: "Database Management System Part - 1",
+      issuer: "Infosys / Infosys Springboard",
+      institution: "Infosys Limited",
+      type: "Course Completion Certificate",
+      date: "November 8, 2025",
+      duration: "Self-paced",
+      score: "Completed",
+      image: "/dbms_part1_certificate.jpg",
+      tags: ["Database Management", "DBMS", "SQL", "Infosys Springboard"]
+    },
+    {
+      id: "dbms-part-2",
+      title: "Database Management System Part - 2",
+      issuer: "Infosys / Infosys Springboard",
+      institution: "Infosys Limited",
+      type: "Course Completion Certificate",
+      date: "November 9, 2025",
+      duration: "Self-paced",
+      score: "Completed",
+      image: "/dbms_part2_certificate.jpg",
+      tags: ["Database Management", "Advanced DBMS", "SQL", "Infosys Springboard"]
     }
   ];
 
@@ -52,18 +103,46 @@ export default function Certifications() {
           </p>
         </div>
 
-        <div className="max-w-5xl mx-auto space-y-12">
-          {certifications.map((cert) => (
+        {/* Carousel Container */}
+        <div className="max-w-6xl mx-auto relative px-0 sm:px-12">
+          
+          {/* Navigation Arrows Desktop */}
+          <button
+            className="absolute left-0 top-1/2 -translate-y-1/2 z-20 hidden sm:flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-full bg-white border border-[#E5E7EB] text-[#111827] shadow-[0_4px_15px_rgba(17,24,39,0.05)] hover:border-[#A3E635] hover:text-[#84CC16] transition-all duration-300 hover:scale-110"
+            onClick={() => paginate(-1)}
+            aria-label="Previous Certificate"
+          >
+            <ChevronLeft className="w-5 h-5 md:w-6 md:h-6" />
+          </button>
+
+          <button
+            className="absolute right-0 top-1/2 -translate-y-1/2 z-20 hidden sm:flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-full bg-white border border-[#E5E7EB] text-[#111827] shadow-[0_4px_15px_rgba(17,24,39,0.05)] hover:border-[#A3E635] hover:text-[#84CC16] transition-all duration-300 hover:scale-110"
+            onClick={() => paginate(1)}
+            aria-label="Next Certificate"
+          >
+            <ChevronRight className="w-5 h-5 md:w-6 md:h-6" />
+          </button>
+
+          {/* Slider Viewport */}
+          <div className="overflow-hidden rounded-3xl pb-6">
             <motion.div
-              key={cert.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              whileHover={{ y: -6 }}
-              transition={{ duration: 0.5 }}
-              className="group bg-white rounded-3xl border border-[#E5E7EB] hover:border-[#A3E635] shadow-[0_4px_25px_rgba(17,24,39,0.015)] hover:shadow-[0_20px_45px_rgba(163,230,53,0.07)] transition-all duration-300 relative overflow-hidden p-6 md:p-8 lg:p-10"
+              className="flex items-stretch"
+              animate={{ x: `-${currentIndex * 100}%` }}
+              transition={{ type: "spring", stiffness: 300, damping: 30 }}
+              drag="x"
+              dragConstraints={{ left: 0, right: 0 }}
+              dragElastic={0.2}
+              onDragEnd={(e, { offset, velocity }) => {
+                const swipe = swipePower(offset.x, velocity.x);
+                if (swipe < -swipeConfidenceThreshold) paginate(1);
+                else if (swipe > swipeConfidenceThreshold) paginate(-1);
+              }}
             >
-              {/* Top Accent Gradient Line */}
+              {certifications.map((cert) => (
+                <div key={cert.id} className="min-w-full px-1 flex">
+                  {/* Certificate Card */}
+                  <div className="group w-full bg-white rounded-3xl border border-[#E5E7EB] hover:border-[#A3E635] shadow-[0_4px_25px_rgba(17,24,39,0.015)] hover:shadow-[0_20px_45px_rgba(163,230,53,0.07)] transition-all duration-300 relative overflow-hidden p-6 md:p-8 lg:p-10 cursor-grab active:cursor-grabbing flex-1">
+                    {/* Top Accent Gradient Line */}
               <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-transparent via-[#A3E635] to-transparent opacity-80" />
 
               <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-10 items-center">
@@ -73,7 +152,10 @@ export default function Certifications() {
                   <motion.div
                     whileHover={{ scale: 1.02 }}
                     transition={{ type: "spring", stiffness: 350, damping: 20 }}
-                    onClick={() => setSelectedCert(cert.image)}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setSelectedCert(cert.image);
+                    }}
                     className="relative w-full rounded-2xl overflow-hidden border border-[#E5E7EB] hover:border-[#A3E635] bg-[#F9FAFB] p-3 cursor-pointer shadow-[0_4px_20px_rgba(17,24,39,0.03)] hover:shadow-[0_15px_35px_rgba(163,230,53,0.14)] transition-all duration-300 group/cert"
                   >
                     <div className="relative w-full aspect-[4/3] rounded-xl overflow-hidden bg-white border border-[#E5E7EB]/60">
@@ -152,8 +234,50 @@ export default function Certifications() {
 
                 </div>
               </div>
+                  </div>
+                </div>
+              ))}
             </motion.div>
-          ))}
+          </div>
+
+          {/* Pagination Indicators and Mobile Controls */}
+          <div className="mt-4 flex items-center justify-between sm:justify-center px-4">
+            
+            {/* Mobile Previous Arrow */}
+            <button
+              className="sm:hidden flex items-center justify-center w-10 h-10 rounded-full bg-white border border-[#E5E7EB] text-[#111827] shadow-sm hover:border-[#A3E635] hover:text-[#84CC16] active:scale-95 transition-all"
+              onClick={() => paginate(-1)}
+              aria-label="Previous Certificate"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+
+            {/* Dots */}
+            <div className="flex items-center gap-3">
+              {certifications.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentIndex(index)}
+                  className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+                    index === currentIndex
+                      ? "bg-[#A3E635] scale-125 shadow-[0_0_8px_rgba(163,230,53,0.5)] w-4"
+                      : "bg-[#E5E7EB] hover:bg-[#D1D5DB]"
+                  }`}
+                  aria-label={`Go to slide ${index + 1}`}
+                />
+              ))}
+            </div>
+
+            {/* Mobile Next Arrow */}
+            <button
+              className="sm:hidden flex items-center justify-center w-10 h-10 rounded-full bg-white border border-[#E5E7EB] text-[#111827] shadow-sm hover:border-[#A3E635] hover:text-[#84CC16] active:scale-95 transition-all"
+              onClick={() => paginate(1)}
+              aria-label="Next Certificate"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
+          </div>
+          
         </div>
       </div>
 
